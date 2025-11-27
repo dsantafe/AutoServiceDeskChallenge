@@ -1,0 +1,12 @@
+venv
+config.py
+my_client.py
+my_ia_client.py
+my_server.py
+.env
+.idea/
+# Compilados de Python
+__pycache__/
+*.pyc
+
+req_bu.txt
