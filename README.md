@@ -1,9 +1,11 @@
-# NexusDesk AI Challenge — Auto-Resolve Service Desk with AI Agents + Azure DevOps
+![Banner](./assets/banner.png)
+
+# NexusDesk Copilot — Auto-Resolve Service Desk with AI Agents + Azure DevOps
 
 ## 🚀 Executive Summary
-NexusDesk AI Challenge is an AI-powered, multi-agent, auto‑resolution platform that transforms Azure DevOps into an intelligent Service Desk. Built using the Model Context Protocol (MCP), this solution enables agents to understand user requests, classify them, create or resolve tickets, and autonomously trigger automation pipelines.
+NexusDesk Copilot is an AI-powered, multi-agent, auto‑resolution platform that transforms Azure DevOps into an intelligent Service Desk. Built using the Model Context Protocol (MCP), this solution enables agents to understand user requests, classify them, create or resolve tickets, and autonomously trigger automation pipelines.
 
-This project directly addresses **IASelf Challenge – Challenge 3: Auto‑resolve Service Desk**, delivering:
+This project directly addresses **NexusDesk Copilot – Challenge 3: Auto‑resolve Service Desk**, delivering:
 - Automatic handling of repetitive requests  
 - Safe automation (“runbooks”)  
 - Transparent actions with explanations  
@@ -26,7 +28,15 @@ Agents can:
 
 ---
 
-## 📁 Project Structure
+## ▶️ Components & Flow Diagram
+
+![Banner](./assets/architecture.png)
+
+# ▶️ Process flow
+
+![Flow Diagram](./assets/flow-diagram.png)
+
+## 📁 Project Structure MCP Server ADO
 
 ```
 /autoservicedesk-mcp-ado-backend
@@ -106,6 +116,8 @@ Operations:
 3. Verify existing policies  
 4. Create branch policies  
 5. Modify an existing policy  
+
+![Demo 1](./assets/demo-1.png)
 
 ---
 
