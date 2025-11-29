@@ -69,8 +69,8 @@ The Metrics Dashboard centralizes the operational performance of NexusDesk Copil
 ```mermaid
 flowchart LR
     User["User (Teams / Web / API / Chatbot)"]
-    Agent["AI Agent (MCP Client)"]
-    Server["MCP-Ado Server"]
+    Agent["AI Agents<br/>Policy Guard · Orchestrator · Knowledge · MCP Client"]
+    Server["MCP-ADO Server"]
     Tools["MCP Tools<br/>pipelines · projects · repos · work items"]
     ADO["Azure DevOps<br/>Repos · Pipelines · Work Items"]
 
