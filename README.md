@@ -36,6 +36,11 @@ Agents can:
 
 ![Flow Diagram](./assets/flow-diagram.png)
 
+# ▶️ Dashboard Metrics
+The Metrics Dashboard centralizes the operational performance of NexusDesk Copilot within Azure DevOps, providing real-time visibility into the volume of tasks generated, automatically resolved by AI agents, and those that require human escalation. Through distribution charts, trend lines, and dynamic tables, the dashboard highlights the system’s ability to process requests, the effort invested by category, and the performance of each agent or team member.
+
+![Flow Diagram](./assets/dashboard.PNG)
+
 ## 📁 Project Structure MCP Server ADO
 
 ```
