@@ -149,6 +149,7 @@ def register_repository_tools(mcp: FastMCP) -> None:
                 )
                 
                 if not contribute_action:
+                    print("❌ Error: No se encontró el permiso 'Contribute")
                     return "❌ Error: No se encontró el permiso 'Contribute'."
                 
                 contribute_bit = contribute_action["bit"]
@@ -248,6 +249,9 @@ def register_repository_tools(mcp: FastMCP) -> None:
                     "Content-Type": "application/json"
                 }
 
+                print('==========assign reviewers')
+                print(f'branch: {branch}')
+
                 # ===== Obtener Project ID =====
                 projects_url = f"{get_base_url()}/_apis/projects?api-version={AZURE_DEVOPS_API_VERSION}"
                 projects_response = await client.get(projects_url, headers=headers)
@@ -319,6 +323,8 @@ def register_repository_tools(mcp: FastMCP) -> None:
                     }
                 }
 
+                print(f'body: {body}')
+
                 if existing_policy_id:
                     upsert_url = (
                         f"{get_base_url()}/{project}/_apis/policy/configurations/"
@@ -343,6 +349,8 @@ def register_repository_tools(mcp: FastMCP) -> None:
                 result += f"🔐 Política: Minimum number of reviewers\n"
                 result += f"🆔 Project ID: {project_id}\n"
                 result += f"🆔 Repo ID: {repo_id}\n"
+
+                print(result)
 
                 return result
 
@@ -392,8 +400,12 @@ def register_repository_tools(mcp: FastMCP) -> None:
                 resp = await client.get(projects_url, headers=headers)
                 resp.raise_for_status()
 
+                print(f'resp: {resp}')
+
                 projects = resp.json().get("value", [])
                 project_id = next((p["id"] for p in projects if p["name"] == project), None)
+
+                print(f'project_id: {project_id}')
 
                 if not project_id:
                     return f"❌ Error: Proyecto '{project}' no encontrado."
@@ -402,6 +414,8 @@ def register_repository_tools(mcp: FastMCP) -> None:
                 repos_url = f"{get_base_url()}/_apis/git/repositories?api-version={AZURE_DEVOPS_API_VERSION}"
                 resp = await client.get(repos_url, headers=headers)
                 resp.raise_for_status()
+
+                
 
                 existing = next((r for r in resp.json().get("value", []) if r["name"] == repository), None)
 
@@ -415,7 +429,12 @@ def register_repository_tools(mcp: FastMCP) -> None:
                 resp = await client.post(create_url, headers=headers, json=create_body)
                 resp.raise_for_status()
 
+                print(f'resp2: {resp}')
+
                 repo_id = resp.json()["id"]
+
+                print(f'repo_id: {repo_id}')
+
 
                 # ===== 4. Importar código desde la URL =====
                 import_body = {
@@ -429,11 +448,25 @@ def register_repository_tools(mcp: FastMCP) -> None:
 
                 import_url = f"{get_base_url()}/{project}/_apis/git/repositories/{repo_id}/importRequests?api-version={AZURE_DEVOPS_API_VERSION}"
                 
+                print(f'import_url: {import_url}')
+
                 resp = await client.post(import_url, headers=headers, json=import_body)
                 resp.raise_for_status()
 
                 import_result = resp.json()
-                repo_url = import_result["repository"]["remoteUrl"]
+                repo_url = import_result["repository"]["remoteUrl"]                
+                '''
+                workitem_id, workitem_url = await create_work_item(
+                    client=client,
+                    project=project,
+                    type="Task",
+                    title=f"As a development team member, I want to create a new repository with name {repository} " +
+                          f"and import source code from an external location {repository_url_import} so that I can quickly initialize the project — automatically handled by NexusDesk Copilot.",
+                    description=f"Request to create a repository {repository} and import source code from an external source",
+                    priority=2,
+                    state="Done"
+                )
+                '''
 
                 # ===== 5. Éxito =====
                 result = (
@@ -444,6 +477,7 @@ def register_repository_tools(mcp: FastMCP) -> None:
                     + f"🆔 Project ID: {project_id}\n"
                     + f"🆔 Repo ID: {repo_id}\n"
                     + f"🔗 URL Remota: {repo_url}\n"
+                    + f"🔗 PBI Remota: {repo_url}\n"
                 )
 
                 return result
