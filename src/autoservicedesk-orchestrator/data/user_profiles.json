@@ -1,0 +1,32 @@
+{
+  "lisof95@hotmail.com": {
+    "role": "Tech_Lead",
+    "area": "Technology",
+    "trust_level": 2
+  },
+  "daniela.vallejo.ospina@outlook.com": {
+    "role": "Junior_ML_Engineer",
+    "area": "Data",
+    "trust_level": 2
+  },
+  "santafedavid01@gmail.com": {
+    "role": "IT_Manager",
+    "area": "IT",
+    "trust_level": 2
+  },
+  "emilio17mc@gmail.com": {
+    "role": "Junior_Developer",
+    "area": "Technology",
+    "trust_level": 3
+  },
+  "josue.atehortua@empresa.com": {
+    "role": "Tech_Lead",
+    "area": "Technology",
+    "trust_level": 4
+  },
+  "_default": {
+    "role": "Unknown",
+    "area": "Unknown",
+    "trust_level": 1
+  }
+}
